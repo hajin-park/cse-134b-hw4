@@ -55,10 +55,46 @@
     black 40%
   );
 
+  /* Active theme colors - default to light */
+  --text: var(--text-light);
+  --background: var(--background-light);
+  --primary: var(--primary-light);
+  --primary-foreground: var(--primary-foreground-light);
+  --secondary: var(--secondary-light);
+  --secondary-foreground: var(--secondary-foreground-light);
+  --accent: var(--accent-light);
+  --accent-foreground: var(--accent-foreground-light);
+
   /* Font and spacing variables */
   --font-primary: "Lora";
   --page-padding-height: 2%;
   --page-padding-width: 10%;
+}
+
+/* Dark theme override */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --text: var(--text-dark);
+  --background: var(--background-dark);
+  --primary: var(--primary-dark);
+  --primary-foreground: var(--primary-foreground-dark);
+  --secondary: var(--secondary-dark);
+  --secondary-foreground: var(--secondary-foreground-dark);
+  --accent: var(--accent-dark);
+  --accent-foreground: var(--accent-foreground-dark);
+}
+
+/* Light theme explicit */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --text: var(--text-light);
+  --background: var(--background-light);
+  --primary: var(--primary-light);
+  --primary-foreground: var(--primary-foreground-light);
+  --secondary: var(--secondary-light);
+  --secondary-foreground: var(--secondary-foreground-light);
+  --accent: var(--accent-light);
+  --accent-foreground: var(--accent-foreground-light);
 }
 
 /* iPhone 14 Pro Max width */

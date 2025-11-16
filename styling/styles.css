@@ -16,6 +16,83 @@ html {
   line-height: 1.5;
   min-height: 100dvh;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 2px solid light-dark(var(--text-light), var(--text-dark));
+  background-color: light-dark(var(--background-light), var(--background-dark));
+  color: light-dark(var(--text-light), var(--text-dark));
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px light-dark(rgba(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px light-dark(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show sun in dark mode, moon in light mode */
+:root[data-theme="light"] .theme-toggle .sun-icon,
+:root:not([data-theme]) .theme-toggle .sun-icon {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+:root[data-theme="light"] .theme-toggle .moon-icon,
+:root:not([data-theme]) .theme-toggle .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+:root[data-theme="dark"] .theme-toggle .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+:root[data-theme="dark"] .theme-toggle .moon-icon {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+
+/* Fallback for browsers without data-theme support */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  :root:not([data-theme]) .theme-toggle .moon-icon {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+}
+
+/* Hide theme toggle when JavaScript is disabled */
+.no-js .theme-toggle {
+  display: none;
 }
 
 /* Hamburger menu toggle */
